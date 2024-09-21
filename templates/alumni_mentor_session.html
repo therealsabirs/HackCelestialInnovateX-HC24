@@ -1,0 +1,35 @@
+{% extends "base_alumni.html" %}
+
+{% block title %}
+    Create Mentor Session
+{% endblock %}
+
+{% block content %}
+    <h1>Create Mentor Session</h1>
+
+    <form action="{{ url_for('create_mentor_session') }}" method="POST">
+        <input type="text" name="session_title" placeholder="Session Title" required><br><br>
+        <input type="date" name="session_date" required><br><br>
+        <input type="time" name="session_time" required><br><br>
+        <input type="text" name="session_link" placeholder="Session Link" required><br><br>
+        <input type="text" name="session_topic" placeholder="Topic (e.g., Career Advice, Skills)" required><br><br>
+        <textarea name="session_description" placeholder="Session Description" rows="4" cols="50" required></textarea><br><br>
+        <button type="submit">Create Session</button>
+    </form>
+
+    <h2>Your Sessions</h2>
+    {% if sessions %}
+        {% for session in sessions %}
+            <div>
+                <h3>{{ session.session_title }} ({{ session.session_date }} {{ session.session_time }})</h3>
+                <p>Topic: {{ session.session_topic }}</p>
+                <p>{{ session.session_description }}</p>
+                <a href="{{ session.session_link }}" target="_blank">Join Session</a><br>
+                <a href="{{ url_for('edit_mentor_session', session_id=session.session_id) }}">Edit</a>
+                <a href="{{ url_for('delete_mentor_session', session_id=session.session_id) }}" onclick="return confirm('Are you sure?')">Delete</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No sessions available.</p>
+    {% endif %}
+{% endblock %}

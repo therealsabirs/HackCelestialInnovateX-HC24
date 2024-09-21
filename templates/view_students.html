@@ -1,0 +1,28 @@
+{% extends "base_faculty.html" %}
+
+{% block title %}View Students{% endblock %}
+
+{% block content %}
+    <h1>Students List</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>
+                        <a href="{{ url_for('add_performance', student_id=student.student_id) }}" class="btn btn-primary">Add Performance</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('faculty_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+{% endblock %}

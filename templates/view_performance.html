@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}View Performance{% endblock %}
+
+{% block content %}
+    <h1>Your Performance</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Semester</th>
+                <th>Subject</th>
+                <th>Grade</th>
+                <th>Feedback</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in performance_records %}
+                <tr>
+                    <td>{{ record.semester }}</td>
+                    <td>{{ record.subject }}</td>
+                    <td>{{ record.grade }}</td>
+                    <td>{{ record.feedback }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+{% endblock %}

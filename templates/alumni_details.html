@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Alumni Details{% endblock %}
+
+{% block content %}
+    <h1>Alumni Details</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Company</th>
+                <th>Role</th>
+                <th>LinkedIn</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alum in alumni %}
+                <tr>
+                    <td>{{ alum.name }}</td>
+                    <td>{{ alum.email }}</td>
+                    <td>{{ alum.company }}</td>
+                    <td>{{ alum.role }}</td>
+                    <td><a href="{{ alum.linkedin_profile }}" target="_blank">{{ alum.linkedin_profile }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+{% endblock %}

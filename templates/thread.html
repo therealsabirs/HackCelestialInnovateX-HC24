@@ -1,0 +1,12 @@
+<h2>{{ thread.content }}</h2>
+<p>Posted by: {{ thread.user.name }} on {{ thread.created_at }}</p>
+
+{% for comment in comments %}
+    <p>{{ comment.content }}</p>
+    <p>Commented by: {{ comment.user.name }} on {{ comment.created_at }}</p>
+{% endfor %}
+
+<form method="post">
+    <textarea name="content" required></textarea>
+    <button type="submit">Comment</button>
+</form>

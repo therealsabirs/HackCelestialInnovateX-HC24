@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Job Openings{% endblock %}
+
+{% block content %}
+    <h1>Job Openings</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Role</th>
+                <th>Company</th>
+                <th>Positions</th>
+                <th>Location</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+                <tr>
+                    <td>{{ job.title }}</td>
+                    <td>{{ job.role }}</td>
+                    <td>{{ job.company }}</td>
+                    <td>{{ job.number_of_positions }}</td>
+                    <td>{{ job.location }}</td>
+                    <td><a href="{{ job.application_link }}" class="btn btn-primary" target="_blank">Apply</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "base_alumni.html" %}
+
+{% block title %}Alumni Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Welcome, </h1>
+    <p>Use the options below to navigate and manage your tasks.</p>
+
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-question"></i>
+            </div>
+            <h3>Answer Questions</h3>
+            <p>Respond to student queries and share your expertise.</p>
+            <a href="{{ url_for('answer_questions') }}" class="btn btn-primary">Answer Questions</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <h3>Add Jobs</h3>
+            <p>Post job opportunities for students.</p>
+            <a href="{{ url_for('add_job') }}" class="btn btn-primary">Add Jobs</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <h3>Edit Profile</h3>
+            <p>Update your personal and professional information.</p>
+            <a href="{{ url_for('edit_profile') }}" class="btn btn-primary">Edit Profile</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3>Create Mentor Session</h3>
+            <p>Host mentor sessions to guide students.</p>
+            <a href="{{ url_for('create_mentor_session') }}" class="btn btn-primary">Create Session</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-comments"></i>
+            </div>
+            <h3>Threads</h3>
+            <p>Participate in discussions and interact with others.</p>
+            <a href="{{ url_for('view_threads_alumni') }}" class="btn btn-primary">View Threads</a>
+        </div>
+    </div>
+
+    <style>
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .card-icon {
+            font-size: 40px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        .btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+        }
+    </style>
+{% endblock %}

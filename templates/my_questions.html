@@ -1,0 +1,36 @@
+<h2>My Questions and Answers</h2>
+
+{% if questions %}
+    {% for question in questions %}
+        <div class="question">
+            <h3>{{ question.query_text }}</h3>
+            <p>Asked on: {{ question.query_date }}</p>
+
+            {% if question.answers %}
+                <h4>Answers:</h4>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Answer</th>
+                            <th>Answered By</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for answer in question.answers %}
+                            <tr>
+                                <td>{{ answer.answer_text }}</td>
+                                <td>{{ answer.alumni.name }}</td>
+                                <td>{{ answer.answer_date }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No answers have been submitted yet.</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>You have not submitted any questions yet.</p>
+{% endif %}

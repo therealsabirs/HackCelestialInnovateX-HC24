@@ -1,0 +1,85 @@
+{% extends "base_faculty.html" %}
+
+{% block title %}View Questions{% endblock %}
+
+{% block content %}
+    <h1>Questions and Answers</h1>
+    <style>
+        /* Embedded CSS for View Questions Page */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .no-answer {
+            font-style: italic;
+            color: #6c757d;
+        }
+
+        .answer-text {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            color: white;
+            background-color: #6c757d;
+        }
+
+        .back-link:hover {
+            background-color: #5a6268;
+        }
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for question in questions %}
+                <tr>
+                    <td><strong>{{ question.query_text }}</strong></td>
+                    <td>
+                        {% if question.answer_text %}
+                            <div class="answer-text">
+                                <em>Answered by Alumni ID: {{ question.alumni_id }}</em><br>
+                                {{ question.answer_text }}
+                            </div>
+                        {% else %}
+                            <div class="no-answer">No answer yet</div>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('faculty_dashboard') }}" class="back-link">Back to Dashboard</a>
+{% endblock %}

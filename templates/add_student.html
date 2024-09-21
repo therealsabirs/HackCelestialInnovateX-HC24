@@ -1,0 +1,85 @@
+{% extends "base_faculty.html" %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+    <h1>Add a New Student</h1>
+    <style>
+        /* Embedded CSS for Add Student Page */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            background-color: #007bff;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            color: white;
+            background-color: #6c757d;
+        }
+
+        .back-link:hover {
+            background-color: #5a6268;
+        }
+    </style>
+    <form action="{{ url_for('add_student') }}" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+        
+        <label for="contact_number">Contact Number:</label>
+        <input type="text" name="contact_number">
+        
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+        
+        <label for="admission_year">Admission Year:</label>
+        <input type="number" name="admission_year" required>
+        
+        <button type="submit">Add Student</button>
+    </form>
+    <a href="{{ url_for('faculty_dashboard') }}" class="back-link">Back to Dashboard</a>
+{% endblock %}

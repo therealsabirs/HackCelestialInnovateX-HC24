@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Mentor Sessions
+{% endblock %}
+
+{% block content %}
+    <h1>Upcoming Mentor Sessions</h1>
+
+    {% if sessions %}
+        <ul>
+        {% for session in sessions %}
+            <li>
+                <h3>{{ session.session_title }} ({{ session.session_date }} {{ session.session_time }})</h3>
+                <p><strong>Topic:</strong> {{ session.session_topic }}</p>
+                <p>{{ session.session_description }}</p>
+                <a href="{{ session.session_link }}" target="_blank">Join Session</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No upcoming sessions available.</p>
+    {% endif %}
+{% endblock %}

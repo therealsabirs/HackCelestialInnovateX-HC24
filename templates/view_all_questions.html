@@ -1,0 +1,42 @@
+{% extends "base_faculty.html" %}
+
+{% block title %}View All Questions and Answers{% endblock %}
+
+{% block content %}
+    <h1>All Questions and Answers</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Asked by</th>
+                <th>Answers</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pair in question_answer_pairs %}
+            <tr>
+                <td>{{ pair.query_text }}</td>
+                <td>{{ pair.student_name }}</td>
+                <td>
+                    {% if pair.answers %}
+                        <ul>
+                            {% for answer in pair.answers %}
+                                <li>{{ answer[0] }} (Answered by: {{ answer[1] }})</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        No answers yet.
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    
+    
+    
+    
+    <a href="{{ url_for('faculty_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Answer Questions{% endblock %}
+
+{% block content %}
+    <h1>Questions and Answers</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answers</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for question, answers in question_answer_pairs %}
+            <tr>
+                <td>{{ question.query_text }}</td>
+                <td>
+                    {% if answers %}
+                        <ul>
+                            {% for answer in answers %}
+                                <li>{{ answer.answer_text }} (Answered by Alumni ID: {{ answer.alumni_id }} on {{ answer.answer_date }})</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        No answers yet
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

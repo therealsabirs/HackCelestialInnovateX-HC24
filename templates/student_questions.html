@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Your Questions and Answers{% endblock %}
+
+{% block content %}
+    <h1>Your Questions and Answers</h1>
+    
+    {% if questions %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Answers</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in questions %}
+                    <tr>
+                        <td>{{ question.query_text }}</td>
+                        <td>
+                            {% if question.answers %}
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Answer</th>
+                                            <th>Answered By</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for answer in question.answers %}
+                                            <tr>
+                                                <td>{{ answer.answer_text }}</td>
+                                                <td>{{ answer.alumni.name }}</td>
+                                                <td>{{ answer.answer_date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <p>No answers yet.</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have not asked any questions yet.</p>
+    {% endif %}
+    
+    <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+{% endblock %}
